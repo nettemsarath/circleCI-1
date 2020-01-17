@@ -7,7 +7,6 @@
      steps:
        - checkout
        - run: echo "First Hello World"
-
     build:
      docker:
        - image: circleci/node:12.14
