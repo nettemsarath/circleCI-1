@@ -7,9 +7,9 @@
      steps:
        - checkout
        - run: echo "A first Hello World"
-   build:
+   test:
      docker:
        - image: circleci/ruby:2.4.1
      steps:
        - checkout
-       - run: echo "A Second Hello World"
+       - run: npm test
