@@ -3,13 +3,13 @@
  jobs:
    build:
      docker:
-       - image: circleci/node:12.14
+       - image: circleci/ruby:2.4.1
      steps:
        - checkout
-       - run: echo "First Hello World"
-    build:
+       - run: echo "A first Hello World"
+   build:
      docker:
-       - image: circleci/node:12.14
+       - image: circleci/ruby:2.4.1
      steps:
        - checkout
-       - run: echo "Second Hello World"
+       - run: echo "A Second Hello World"
