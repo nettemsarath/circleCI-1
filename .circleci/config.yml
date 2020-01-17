@@ -5,16 +5,17 @@
  jobs:
    one:
      docker:
-       - image: circleci/node:12.14
+       - image: circleci/ruby:2.4.1
      steps:
        - checkout
-       - run: echo "A first Hello"
+       - run: echo "A first hello"
+      
    two:
-      docker:
-       - image: circleci/node:12.14
+     docker:
+       - image: circleci/ruby:2.4.1
      steps:
        - checkout
-       - run: echo "A second Hello"
+       - run: echo "A more familiar hi"
 
  workflows:
    version: 2
