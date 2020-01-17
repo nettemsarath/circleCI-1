@@ -3,7 +3,7 @@
 
 version: 2
 jobs:
-    Build:
+    build:
         docker:
           - image: circleci/node:7
         steps:
