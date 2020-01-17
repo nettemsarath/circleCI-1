@@ -1,34 +1,37 @@
 
-
 const users = require('./app') ;
-const axios = require('axios')
+const mockaxios = require('axios')
 const Rockets = require('./rocket-silo')
 
 describe('Testing GetEmployees', ()=>{
 
-    test('success :Get All Employees', async() => {
+    test('should success To Get All Employees', async() => {
 
-        axios.get = jest.fn(() =>  new Promise().resolve(
-            [
-            { 
-                id : 434 ,
-                employee_name : "Nettem Sarath" ,
-                employee_salary : "20000" ,
-                employee_age : "23",
-                profile_image : ""
-            },
-            { 
-                id : 435 ,
-                employee_name : "Perumal Navya" ,
-                employee_salary : "25000" ,
-                employee_age : "23",
-                profile_image : ""
-            },
-        ]
-        ) )
+        mockaxios.get = jest.fn(()=>{
+            return new Promise.resolve({ 
+                data: { result: 
+                [
+                    { 
+                        id : 434 ,
+                        employee_name : "Nettem Sarath" ,
+                        employee_salary : "20000" ,
+                        employee_age : "23",
+                        profile_image : ""
+                    },
+                    { 
+                        id : 435 ,
+                        employee_name : "Perumal Navya" ,
+                        employee_salary : "25000" ,
+                        employee_age : "23",
+                        profile_image : ""
+                    },
+                ] } 
+            })
+        })
     
         try {
             let output = await users.GetEmployes()
+            expect( mockaxios.get ).toHaveBeenCalled()
             expect( output ).toEqual( [
                 { 
                     id : 434 ,
@@ -45,20 +48,27 @@ describe('Testing GetEmployees', ()=>{
                     profile_image : ""
                 },
             ] )
+    
         } catch (error) {
     
         }
     
     })
 
-    test('Fail : To Get All Employee Details', async()=>{
-        axios.get = jest.fn(()=> new Promise((resolve,reject)=>{
-            reject('Authentication Error')
-        }) ) ;
+    test('should Fail : To Get All Employee Details', async()=>{
+
+        jest.spyOn(mockaxios ,'get').mockImplementationOnce(()=>{
+            return new Promise((resolve, reject)=>{
+                reject({ message :'Authentication Error'})
+            })
+        })
+
         try {
-            await users.GetEmployes()
+           let result= await users.GetEmployes()
+        
         } catch (error) {
-            
+        
+            expect( mockaxios.get ).toHaveBeenCalled()
             expect( error.message ).toBe('Authentication Error')
         }
     })
