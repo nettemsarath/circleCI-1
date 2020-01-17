@@ -5,18 +5,9 @@ version: 2
 jobs:
     Build:
         docker:
-            - image: circleci/node:7
-    Test:
+          - image: circleci/node:7
         steps:
           - checkout
           - run:
               name: tests
               command: npm test
-          
- workflows:
-   version: 2
-    Build_and_Test:
-     jobs:
-       - Build
-       - Test : 
-            requires: Build
