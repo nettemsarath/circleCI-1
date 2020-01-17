@@ -11,7 +11,7 @@ jobs:
    test:
      steps:
        - checkout
-       - run: npm test
+       - run: echo "A Second Hello World"
 
 workflows:
    version: 2
