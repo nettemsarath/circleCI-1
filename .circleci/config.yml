@@ -3,24 +3,20 @@
 
 version: 2
 jobs:
-    hello:
+    Build:
+        docker:
+            - image: circleci/node:7
+    Test:
         steps:
           - checkout
           - run:
-            name : Greet
-            command: echo "Hello World"
-    build:
-        docker:
-            - image: circleci/node:7
-        steps:
-            - checkout
-            - run:
-                name: tests
-                command: npm test
+              name: tests
+              command: npm test
           
  workflows:
    version: 2
-    hello_and_build:
+    Build_and_Test:
      jobs:
-       - hello
-       - build
+       - Build
+       - Test : 
+            requires: Build
