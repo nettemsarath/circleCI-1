@@ -1,23 +1,22 @@
 
-version: 2
-jobs:
-   build:
+
+
+ version: 2
+ jobs:
+   one:
      docker:
        - image: circleci/node:12.14
      steps:
        - checkout
-       - run: echo "A first Hello World"
-
-   test:
+       - run: echo "A first Hello"
+   two:
      steps:
        - checkout
-       - run: echo "A Second Hello World"
+       - run: echo "A second Hello"
 
-workflows:
+ workflows:
    version: 2
-   build_and_test:
+   one_and_two:
      jobs:
-       - build
-       - test:
-          requires:
-            - build
+       - one
+       - two
