@@ -6,4 +6,11 @@
        - image: circleci/node:12.14
      steps:
        - checkout
-       - run: notacommand
+       - run: echo "First Hello World"
+
+    build:
+     docker:
+       - image: circleci/node:12.14
+     steps:
+       - checkout
+       - run: echo "Second Hello World"
