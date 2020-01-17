@@ -22,5 +22,5 @@ jobs:
    version: 2
    hello_and_build:
      jobs:
-       - one
-       - two
+       - hello
+       - build
