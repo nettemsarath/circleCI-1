@@ -10,4 +10,6 @@ jobs:
     steps:
       — checkout
 
-      — run: npm test
+      — run:
+          name: test 
+          command: npm test
